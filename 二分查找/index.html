@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const arr = [1,2,2,6,9,10]
+    // 二分查找
+    function binarySearch(arr,target) {
+        // 找上边界和下边界
+        let begin = 03
+        let end = arr.length -1
+        while(begin <= end) {
+            let mid =Math.floor((begin + begin)/2)
+            if(arr[mid] >target) {
+                end = mid 
+            }else if(arr[mid] < target) {
+                begin = mid
+            }else if(arr[mid] = target){
+                return mid
+            } 
+            
+        }
+    
+    }
+
+    console.log(binarySearch(arr,6));
+</script>
+</html>

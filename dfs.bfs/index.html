@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const tree = {
+        name: '中国',
+        children: [{
+                name: '北京',
+                children: [{
+                        name: '朝阳群众',
+                        children: [{
+                            name: '西宁市',
+                            code: '0521',
+                        }]
+                    },
+                    {
+                        name: '海淀区',
+                    },
+                    {
+                        name: '昌平区',
+                    },
+                ],
+            },
+            {
+                name: '浙江省',
+                children: [{
+                        name: '杭州市',
+                        code: '0571',
+                    },
+                    {
+                        name: '嘉兴市',
+                    },
+                    {
+                        name: '绍兴市',
+                    },
+                    {
+                        name: '宁波市',
+                    },
+                ],
+            },
+        ],
+    };
+
+    // dfs递归  递归默认调用栈  非递归算法要创建栈结构
+    // function dfs(tree, name) {
+    //     if (tree.name === name) return tree
+    //     if (!tree.name && !tree.children) return null;
+    //     for (let i = 0; i < tree.children.length; i++) {
+    //         let result = dfs(tree.children[i], name);
+    //         if (result) return result;
+    //     }
+    //     return null;
+    // }
+
+    //dfs非递归算法
+    function dfs(tree, name) {
+        let stack = []
+        let result = {};
+        stack.push(tree);
+        while (stack.length) {
+            let item = stack.pop();
+            if (item.name == name) {
+                result = item;
+                return result;
+            }
+            if(item.children) {
+                for(let i =item.children.length-1; i >=0; i--) {
+                    stack.push(item.children[i]);
+                   
+                }
+            }
+            
+        }
+        return result;
+    }
+
+
+    // 非递归广度优先
+    function bfs(tree,name) {
+        let queue = [];
+        let result={}
+        queue.unshift(tree);
+        while (queue.length){
+            let item = queue.shift();
+            if(item.name == name){
+                result = item;
+                // return result;
+                
+            }
+            if(item.children){
+                for(let i = 0; i < item.children.length; i++){
+                    queue.push(item.children[i]);
+                }
+
+            }
+        }
+        return result;
+    }
+
+    console.log(dfs(tree, '西宁市'));
+</script>
+
+</html>
